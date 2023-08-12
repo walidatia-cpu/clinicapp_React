@@ -38,9 +38,8 @@ const Loginhook = () => {
                 if (res.data.requestStatus === 200 && res.data.data.token) {
                     localStorage.setItem("token", res.data.data.token)
                     NotificationManager.success('Logged in successfully', 'success!', 2000);
-                    setTimeout(() => {
-                        window.location.href = "/"
-                    }, 1500);
+                    window.location.href = "/"
+                   
                 } else {
                     localStorage.removeItem("token")
                 }

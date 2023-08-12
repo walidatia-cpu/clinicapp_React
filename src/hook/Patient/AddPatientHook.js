@@ -87,9 +87,8 @@ const AddPatientHook = () => {
                 if (res.data.requestStatus === 200) {
                    
                     NotificationManager.success(res.data.message, 'success!', 2000);
-                    setTimeout(() => {
-                        window.location.href = "/Patient"
-                    }, 1500);
+                    window.location.href = "/Patient"
+                    
                 } else {
                     NotificationManager.error("Fill All Fields", 'error!', 2000);
                 }

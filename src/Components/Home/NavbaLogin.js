@@ -1,9 +1,14 @@
 import React from 'react'
 import { Button, Form, FormControl, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import { NotificationManager } from 'react-notifications';
 const NavbarLogin = () => {
 
+  const Logout=()=>{
+    localStorage.removeItem("token");
+    NotificationManager.success('Logged out successfully', 'success!', 2000);
+    window.location.href = "/"
+  }
   return (
     <div>
      <Navbar bg="dark" expand="lg" variant="dark">
@@ -17,15 +22,20 @@ const NavbarLogin = () => {
     >
       <Nav.Link><Link to="/">Home</Link></Nav.Link>
       {
-        (
+        
           localStorage.getItem("token")==="" ||localStorage.getItem("token")=="" || localStorage.getItem("token")===null?
-          <Nav.Link><Link to="login">Login</Link></Nav.Link>:
+          (<Nav.Link><Link to="login">Login</Link></Nav.Link>) :
+          (
+            <>
           <Nav.Link><Link to="Patient">Patient</Link></Nav.Link>
-        )
+          <Nav.Link> <Link  onClick={Logout}>LogOut</Link></Nav.Link>
+          </>
+          )
+        
       }
       
       
-      <Nav.Link href="#" disabled> walid</Nav.Link>
+      
     </Nav>
     <Form className="d-flex">
       <FormControl
